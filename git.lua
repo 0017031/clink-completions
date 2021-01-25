@@ -9,7 +9,7 @@ local color = require('color')
 local parser = clink.arg.new_parser
 
 if clink_version.supports_color_settings then
-    settings.add('color.git.star', 'bright green', 'Color for preferred branch completions')
+    -- settings.add('color.git.star', 'bright green', 'Color for preferred branch completions')
 end
 
 ---
@@ -964,3 +964,53 @@ local git_parser = parser(
 )
 
 clink.arg.register_parser("git", git_parser)
+
+local gc_parser = parser(
+        -- "checkout" .. parser({checkout_spec_generator},
+			{checkout_spec_generator},
+            "-q", "--quiet",
+            "-b",
+            "-B",
+            "-l",
+            "--detach",
+            "-t", "--track",
+            "--orphan",
+            "-2", "--ours",
+            "-3", "--theirs",
+            "-f", "--force",
+            "-m", "--merge",
+            "--overwrite-ignore",
+            "--conflict",
+            "-p", "--patch",
+            "--ignore-skip-worktree-bits",
+			"--help"
+		)
+clink.arg.register_parser("gc", gc_parser)
+
+local gb_parser = parser(
+            "-v", "--verbose",
+            "-q", "--quiet",
+            "-t", "--track",
+            "--set-upstream",
+            "-u", "--set-upstream-to",
+            "--unset-upstream",
+            "--color",
+            "-r", "--remotes",
+            "--contains" ,
+            "--abbrev",
+            "-a", "--all",
+            "-d" .. parser({branches}):loop(1),
+            "--delete" .. parser({branches}):loop(1),
+            "-D" .. parser({branches}):loop(1),
+            "-m", "--move",
+            "-M",
+            "--list",
+            "-l", "--create-reflog",
+            "--edit-description",
+            "-f", "--force",
+            "--no-merged",
+            "--merged",
+            "--column",
+			"--help"
+        )
+clink.arg.register_parser("gb", gb_parser)
