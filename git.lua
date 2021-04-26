@@ -9,7 +9,7 @@ local color = require('color')
 local parser = clink.arg.new_parser
 
 if clink_version.supports_color_settings then
-    -- settings.add('color.git.star', 'bright green', 'Color for preferred branch completions')
+    settings.add('color.git.star', 'bright green', 'Color for preferred branch completions')
 end
 
 ---
